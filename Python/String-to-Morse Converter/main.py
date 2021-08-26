@@ -14,19 +14,21 @@ MORSE_DICTIONARY = {'A': '.-', 'B': '-...',
                     '?': '..--..', '/': '-..-.', '-': '-....-',
                     '(': '-.--.', ')': '-.--.-'}
 
+
+def convert(string_to_convert):
+    converted_string = ""
+    words = string_to_convert.split(' ')
+    for word in words:
+        for character in word:
+            converted_string += MORSE_DICTIONARY[character] + ' '
+        converted_string += '/'
+    return converted_string
+
+
 def main():
-    def convert(string_to_convert):
-        converted_string = ""
-        words = string_to_convert.split(' ')
-        for word in words:
-            for character in word:
-                converted_string += MORSE_DICTIONARY[character] + ' '
-            converted_string += '/'
-        return converted_string
-
-
     user_input = input("Please enter a string to convert: ").upper()
     print(convert(user_input))
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
