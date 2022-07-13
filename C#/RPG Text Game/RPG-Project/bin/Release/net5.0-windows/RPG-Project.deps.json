@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "RPG-Project/1.0.0": {
+        "dependencies": {
+          "Engine": "1.0.0"
+        },
+        "runtime": {
+          "RPG-Project.dll": {}
+        }
+      },
+      "Engine/1.0.0": {
+        "runtime": {
+          "Engine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RPG-Project/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

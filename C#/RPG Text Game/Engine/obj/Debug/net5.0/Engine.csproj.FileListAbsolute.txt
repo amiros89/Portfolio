@@ -1,0 +1,12 @@
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\bin\Debug\net5.0\Engine.deps.json
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\bin\Debug\net5.0\Engine.dll
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\bin\Debug\net5.0\ref\Engine.dll
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\bin\Debug\net5.0\Engine.pdb
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.AssemblyInfoInputs.cache
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.AssemblyInfo.cs
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.csproj.CoreCompileInputs.cache
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.dll
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\ref\Engine.dll
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.pdb
+C:\Users\Amir\Documents\GitHub\.NET-Projects\Engine\obj\Debug\net5.0\Engine.csproj.AssemblyReference.cache
