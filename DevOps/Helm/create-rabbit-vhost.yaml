@@ -1,0 +1,47 @@
+# runs when helm chart for the product is deployed in CI
+# pre install hook that creates a dedicated vhost in rabbitmq via rabbit's API to be used by a unique product deployment in CI
+# identical post uninstall hook exists to remove the vhost after CI environment was uninstalled
+{{- if .Values.global.CI -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "product.fullname" . }}-create-vhost
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: {{ include "product.fullname" . }}-create-vhost
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+        # hook job will be deployed in dedicated k8s nodes for CI deployments. 
+        tolerations:
+        - key: "key"
+          value: "value"
+          operator: "Equal"
+          effect: "NoSchedule"
+        # hook creates batch job that creates a container which makes the API call to rabbitmq (passed from values) to create a new vhost.
+        containers:
+        - name: create-vhost
+          image: "alpine/curl:3.14"
+          command: [ "curl" ]
+          args:
+            - -u
+            - {{ .Values.global.rabbitmq.user }}:{{ .Values.global.rabbitmq.password }}
+            - -X
+            - PUT
+            - https://{{ .Values.global.rabbitmq.host }}/api/vhosts/{{ .Values.global.rabbitmq.vhost }}
+        restartPolicy: Never
+{{- end -}}
