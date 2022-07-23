@@ -1,0 +1,170 @@
+{% include "header.html" %}
+      <!-- Title -->
+  <section id="title">
+
+    <div class="container-fluid">
+      {% include "navbar.html" %}
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="big-heading">Smart market trend tracker to help you find the hottest products to sell and increase
+            your shop revenue!</h1>
+
+          <a href="{{url_for('sign_up')}}" role="button" type="button" class="btn btn-dark btn-lg footer-download-button" aria-pressed="true"><i class="fas fa-file-signature"></i>
+            Sign Up
+          </a>
+        </div>
+        <div class="col-lg-6 title-image-container">
+          <img class="title-image" src="static/images/main-bg-transperent.png" alt="ecommerce">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- Features -->
+
+  <section id="features">
+    <div class="row features-row">
+      <div class="col-lg-3 feature-cell">
+        <i class="fas fa-check-circle fa-4x feature-icon"></i>
+        <h3 class="feature-title"> Easy to use.</h3>
+        <p class="feature-subtitle">Intuitive and effortless usage.</p>
+      </div>
+      <div class="col-lg-3 feature-cell">
+        <i class="fas fa-chart-line fa-4x feature-icon"></i>
+        <h3 class="feature-title"> Revenue boost.</h3>
+        <p class="feature-subtitle">Top sellings product guarantee to increase your revenue.</p>
+      </div>
+      <div class="col-lg-3 feature-cell">
+        <i class="fas fa-search-dollar fa-4x feature-icon"></i>
+        <h3 class="feature-title"> High value.</h3>
+        <p class="feature-subtitle">We look for the products with the most value.</p>
+      </div>
+      <div class="col-lg-3 feature-cell">
+        <!-- <i class="fas fa-dollar-sign fa-4x feature-icon"></i> -->
+        <i class="fas fa-flask fa-4x feature-icon"></i>
+        <h3 class="feature-title"> Smart search.</h3>
+        <p class="feature-subtitle">Sophisticated algorithm to seek for the hottest selling products.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Testimonials -->
+
+  <section id="testimonials">
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <h2 class="testimonial-text">"My eBay shop revenue is skyrocketing ever since I started using eLocator!"</h2>
+        <img class="testimonial-image" src="static/images/sapir.jpg" alt="sapir-profile">
+        <em>Sapir, Israel</em>
+    </div>
+    <div class="carousel-item">
+        <h2 class="testimonial-text">"I doubled my shops and tripled my net income because of eLocator, thank you!"</h2>
+        <img class="testimonial-image" src="static/images/amir.jpg" alt="amir-profile">
+        <em>Amir, Israel</em>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+<!--  </section>-->
+
+
+  <!-- Press -->
+
+<!--  <section id="press">-->
+    <img class="press-logo" src="static/images/techcrunch.png" alt="tc-logo">
+    <img class="press-logo" src="static/images/tnw.png" alt="tnw-logo">
+    <img class="press-logo" src="static/images/bizinsider.png" alt="biz-insider-logo">
+    <img class="press-logo" src="static/images/mashable.png" alt="mashable-logo">
+
+  </section>
+
+
+  <!-- Pricing -->
+
+  <section id="pricing">
+
+    <h2 class="section-heading">A Plan for Every Dropshipper's Needs</h2>
+    <p>Simple and affordable price plans for you and your eCommerce shops.</p>
+    <div class="card-group">
+      <div class="pricing-column col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="price-plan-header">Free Tier</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="price-text">Free</h2>
+            <p>10 Queries Per Month</p>
+            <p>50 Queries History</p>
+            <button type="button" class="btn btn-outline-dark">Sign Up</button>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+      <div class="pricing-column col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="price-plan-header">Entrepreneur</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="price-text">$49 / mo</h2>
+            <p>25 Queries Per Month</p>
+            <p>100 Queries History</p>
+            <button type="button" class="btn btn-dark">Sign Up</button>
+          </div>
+          <div class="card-footer">
+
+          </div>
+        </div>
+      </div>
+      <div class="pricing-column col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="price-plan-header">Tycoon</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="price-text">$99 / mo</h2>
+            <p>Unlimited Queries</p>
+            <p>1 Year Query History Retention</p>
+            <button type="button" class="btn btn-dark">Sign Up</button>
+          </div>
+          <div class="card-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <!-- Call to Action -->
+
+  <section id="cta">
+
+    <h3 class="cta-title">Start selling big, today!</h3>
+    <div class="cta-buttons-container">
+      <a href="{{url_for('sign_up')}}" role="button" type="button" class="btn btn-dark btn-lg footer-download-button" aria-pressed="true"><i class="fas fa-file-signature"></i> Sign Up</a>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+{% include "footer.html" %}
+

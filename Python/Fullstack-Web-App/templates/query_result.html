@@ -1,0 +1,130 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js"></script>
+{% block javascript %}
+	<script>
+    $(document).ready( function () {
+        $('#query_results').DataTable({
+        dom: 'Bfrtip',
+            buttons: [
+        'test', 'excel', 'pdf'
+    ],
+        order: [],
+            "columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+    }],
+        "paging":   false,
+        "ordering": true,
+        "info":     false
+    });
+    });
+            $.fn.dataTable.Buttons( table, {
+    buttons: [
+        'copy', 'excel', 'pdf'
+    ]
+} );
+
+    table.buttons().container()
+    .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
+    </script>
+
+
+{% endblock %}
+<!-- Title -->
+<section id="dashboard">
+
+    <div class="container-fluid">
+        {% include "navbar.html" %}
+
+        <div class="row d-flex justify-content-center text-center">
+            <h1 class="dashboard-welcome">Hi {{current_user.name.split()[0]}}! Welcome to your dashboard</h1>
+            <br>
+            <ul class="nav flex-column col-lg-2">
+                <li class="nav-item dashboard-menu">
+                    <a class="nav-link active" href="{{url_for('new_query')}}">New Query</a>
+                </li>
+                <li class="nav-item dashboard-menu">
+                    <a class="nav-link" href="{{url_for('dashboard')}}">Queries History</a>
+                </li>
+                <li class="nav-item dashboard-menu">
+                    <a class="nav-link" href="{{url_for('user_settings')}}">Settings</a>
+                </li>
+            </ul>
+            <div class="col-lg-10 col-md-10 mx-auto table-responsive">
+                <a href="{{url_for('download_result',query_id=query_id)}}" role="button" type="button"
+                   class="btn btn-dark setting-item">Export to CSV</a>
+                <table class="table table-dark table-striped table-hover" id="query_results">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="no-sort">#</th>
+                        <th scope="col" class="no-sort">Amazon Title</th>
+                        <th scope="col" class="no-sort">ASIN</th>
+                        <th scope="col" class="no-sort">eBay Title</th>
+                        <th scope="col" class="no-sort">eBay Link</th>
+                        <th scope="col">Lifetime Sales</th>
+                        <th scope="col">Recent Sales</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-striped">
+                    {% for product in products.items %}
+                    <tr>
+                        <th scope="row">{{product.id}}</th>
+                        <td>{{ product.amazon_title }}</td>
+                        <td><a href="{{ product.amazon_link }}" target="_blank" rel="noopener noreferrer"
+                               class="results-link">{{ product.asin }}</a></td>
+                        <td>{{ product.ebay_title }}</td>
+                        <td><a href="{{ product.ebay_url }}" target="_blank" rel="noopener noreferrer"
+                               class="results-link">eBay Link</a></td>
+                        <td>{{product.lifetime_sales}}</td>
+                        <td>{{product.recent_sales}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!-- Pagination Links-->
+                <div class="text-right">
+                    <a href="{{ url_for('query_result',query_id=query_id, page=products.prev_num) }}"
+                       class="btn btn-outline-dark
+       {% if products.page == 1 %}disabled{% endif %}">
+                        &laquo;
+                    </a>
+                    <!-- Loop through the number of pages to display a link for each-->
+                    {% for page_num in products.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                    {% if page_num %}
+                    <!-- Check for the active page and set the link to "Active"-->
+                    {% if products.page == page_num %}
+                    <a href="{{ url_for('query_result',query_id=query_id, page=page_num) }}"
+                       class="btn btn-dark">
+                        {{ page_num }}
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('query_result',query_id=query_id, page=page_num) }}"
+                       class="btn btn-outline-dark">
+                        {{ page_num }}
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    ...
+                    {% endif %}
+                    {% endfor %}
+                    <a href="{{ url_for('query_result',query_id=query_id, page=products.next_num) }}"
+                       class="btn btn-outline-dark
+       {% if products.page == products.pages %}disabled{% endif %}">
+                        &raquo;
+                    </a>
+                </div>
+                <p class="text-right mt-3 paginator">
+                    Showing page {{ products.page }} of {{ products.pages }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+
+{% include "footer.html" %}
