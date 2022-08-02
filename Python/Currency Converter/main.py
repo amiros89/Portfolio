@@ -70,16 +70,21 @@ window = Tk()
 window.geometry('580x250', )
 window.title("Currency Converter")
 window.resizable(False, False)
+
 amount_label = Label(window, text="Amount to Convert")
 amount_label.grid(row=0, column=1)
 amount_input = Entry(window)
 amount_input.grid(row=1, column=1)
+
 base_label = Label(window, text="Base Currency")
 base_label.grid(row=1, column=0)
+
 target_currency_label = Label(window, text="Convert To")
 target_currency_label.grid(row=1, column=2)
+
 base_currency_var = StringVar(window)
 target_currency = StringVar(window)
+
 base_currencies = ttk.Combobox(window, textvariable=base_currency_var)
 base_currencies["values"] = converter.get_currencies()
 base_currencies["state"] = "readonly"
@@ -101,8 +106,8 @@ btn = Button(window, text='Submit', command=result, width=20, bg='blue', fg='whi
 btn.grid(row=3, column=1)
 
 copy = Button(window, text="Copy to Clipboard", command=copy_to_clipboard, width=20, bg="white", fg="black")
-copy.grid(row=7, column=1
-          )
+copy.grid(row=7, column=1)
+
 accurate_label = Label(window, text=f"Results are correct as of {converter.get_correct_time()} UTC")
 accurate_label.grid(row=6, column=1)
 
