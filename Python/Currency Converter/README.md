@@ -1,0 +1,1 @@
+Simple Currency Converter App, features GUI implemented using Tkinter library, requests, basic OOP and JSON parsing.
