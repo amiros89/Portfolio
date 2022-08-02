@@ -1,6 +1,6 @@
 import requests
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from datetime import datetime
 
 URL = "https://api.exchangerate-api.com/v4/latest/USD"
@@ -40,10 +40,26 @@ def get_conversion_data():
 
 
 def result():
+    result_text.config(state="normal")
     if result_text.get("1.0", END):
         result_text.delete("0.0", END)
     data = get_conversion_data()
-    result_text.insert(END, str(converter.convert(data.convert_from, data.convert_to, data.amount_to_convert)))
+    try:
+        if float(data.amount_to_convert) > 0:
+            result_text.insert(END, str(converter.convert(data.convert_from, data.convert_to, data.amount_to_convert)))
+        else:
+            messagebox.showerror("Error", "Amount must be greater than 0")
+
+    except ValueError:
+        messagebox.showerror("Unexpected Error", "Amount must be numbers only")
+    result_text.config(state="disabled")
+    return
+
+
+def copy_to_clipboard():
+    window.clipboard_clear()
+    window.clipboard_append(result_text.get("1.0", END))
+    window.update()  # now it stays on the clipboard after the window is closed
     return
 
 
@@ -78,12 +94,15 @@ result_label = Label(window, text="Result")
 result_label.grid(row=4, column=1)
 
 result_var = Variable()
-result_text = Text(window, height=1, width=25)
+result_text = Text(window, height=1, width=25, state="disabled")
 result_text.grid(row=5, column=1)
 
 btn = Button(window, text='Submit', command=result, width=20, bg='blue', fg='white')
 btn.grid(row=3, column=1)
 
+copy = Button(window, text="Copy to Clipboard", command=copy_to_clipboard, width=20, bg="white", fg="black")
+copy.grid(row=7, column=1
+          )
 accurate_label = Label(window, text=f"Results are correct as of {converter.get_correct_time()} UTC")
 accurate_label.grid(row=6, column=1)
 
