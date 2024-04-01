@@ -5,8 +5,7 @@ def is_happy(n):
     while result != 1:
         if result in hash:
             return False 
-        else:
-            hash.append(result)
-            digits=[int(x) for x in str(result)]
-            result = sum([digit*digit for digit in digits])
+        hash.append(result)
+        digits=[int(x) for x in str(result)]
+        result = sum([digit*digit for digit in digits])
     return True
